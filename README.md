@@ -9,6 +9,9 @@
 
 ----------------------------------------
 
+## 重要说明
+该框架为原[`ZLPhotoBrowser`](https://github.com/longitachi/ZLPhotoBrowser)，`4.0.0`版本以后由`Swift`重新编写，该`OC`版本不在维护，请使用`Swift`版本
+
 ### 运行Demo
 下载完Demo请执行`carthage update --platform iOS` （运行时候请选择 `Example` target）`SDWebImage.framework` 和 `SDWebImageMapKit.framework` 路径如果报错的话，关掉项目，重新打开即可
 
