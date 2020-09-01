@@ -9,7 +9,7 @@
 
 ----------------------------------------
 
-## 重要说明
+## 说明
 该框架为原[`ZLPhotoBrowser`](https://github.com/longitachi/ZLPhotoBrowser)，`4.0.0`版本以后由`Swift`重新编写，该`OC`版本不在维护，请使用`Swift`版本
 
 ### 运行Demo
@@ -52,7 +52,7 @@
 > 如果您在使用中有好的需求及建议，或者遇到什么bug，欢迎随时issue，我会及时的回复
  
 ### 更新日志
-> [更多更新日志](https://github.com/longitachi/ZLPhotoBrowser/blob/master/UPDATELOG.md)
+> [更多更新日志](https://github.com/longitachi/ZLPhotoBrowser-objc/blob/master/UPDATELOG.md)
 ```
 ● 3.2.0: 添加图片视频选择互斥功能（即只能选择1个视频或最多几张图片）; 添加选择量达到最大值时其他cell显示遮罩功能; 删除`allowMixSelect`,`maxVideoSelectCountInMix`,`minVideoSelectCountInMix`参数;
 ● 3.1.4: 添加自定义相机分辨率(320*240, 960*540); 修正拍照后图片方向; 编辑视频最小允许编辑5s; 添加相机是否可用检测; 修正部分多语言错误的问题; 
@@ -86,12 +86,12 @@ IDE：Xcode 9.0 及以上版本 (由于适配iPhone X使用iOS11api，所以请�
   * 3.项目依赖 `SDWebImage`、`GPUImage` 所以需要导入这两个框架
   * 4.导入 "ZLPhotoBrowser.h"
 * Cocoapods
-  * 1.在Podfile 中添加 `pod 'ZLPhotoBrowser'`
+  * 1.在Podfile 中添加 `pod 'ZLPhotoBrowser-objc'`
   * 2.执行 `pod setup`
   * 3.执行 `pod install` 或 `pod update`
   * 4.导入 \<ZLPhotoBrowser/ZLPhotoBrowser.h\>
 * Carthage
-  * 1.在Cartfile 中添加 `github "longitachi/ZLPhotoBrowser"`
+  * 1.在Cartfile 中添加 `github "longitachi/ZLPhotoBrowser-objc"`
   * 2.执行 `carthage update`
   * 3.导入 \<ZLPhotoBrowser/ZLPhotoBrowser.h\>
 
