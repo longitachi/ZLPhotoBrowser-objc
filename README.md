@@ -1,4 +1,4 @@
-![image](https://github.com/longitachi/ImageFolder/blob/master/ZLPhotoBrowser/ZLPhotoBrowser.png)
+![image](https://github.com/longitachi/ImageFolder/blob/master/ZLPhotoBrowser-objc/ZLPhotoBrowser.png)
 
 [![Version](https://img.shields.io/cocoapods/v/ZLPhotoBrowser.svg?style=flat)](http://cocoadocs.org/docsets/ZLPhotoBrowser)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)&nbsp;
@@ -10,7 +10,7 @@
 ----------------------------------------
 
 ## 说明
-该框架为原[`ZLPhotoBrowser`](https://github.com/longitachi/ZLPhotoBrowser)，`4.0.0`版本以后由`Swift`重新编写，该`OC`版本不在维护，请使用`Swift`版本
+该框架为原[`ZLPhotoBrowser`](https://github.com/longitachi/ZLPhotoBrowser)，`4.0.0`版本以后由`Swift`重新编写，该`OC`版本不在维护，`Swift`版本有更多功能，请使用`Swift`版本
 
 ### 运行Demo
 下载完Demo请执行`carthage update --platform iOS` （运行时候请选择 `Example` target）`SDWebImage.framework` 和 `SDWebImageMapKit.framework` 路径如果报错的话，关掉项目，重新打开即可
@@ -218,92 +218,92 @@ Privacy - Microphone Usage Description
 
 ### <a id="效果图"></a> 效果图
 - 多语言国际化效果图
-![image](https://github.com/longitachi/ImageFolder/blob/master/ZLPhotoBrowser/english.png)
-![image](https://github.com/longitachi/ImageFolder/blob/master/ZLPhotoBrowser/japan.png)
-![image](https://github.com/longitachi/ImageFolder/blob/master/ZLPhotoBrowser/zh-hans.png)
-![image](https://github.com/longitachi/ImageFolder/blob/master/ZLPhotoBrowser/zh-hant.png)
+![image](https://github.com/longitachi/ImageFolder/blob/master/ZLPhotoBrowser-objc/english.png)
+![image](https://github.com/longitachi/ImageFolder/blob/master/ZLPhotoBrowser-objc/japan.png)
+![image](https://github.com/longitachi/ImageFolder/blob/master/ZLPhotoBrowser-objc/zh-hans.png)
+![image](https://github.com/longitachi/ImageFolder/blob/master/ZLPhotoBrowser-objc/zh-hant.png)
 
 - iPhone X
 
-![image](https://github.com/longitachi/ImageFolder/blob/master/ZLPhotoBrowser/iPhoneXPortrait.png)
+![image](https://github.com/longitachi/ImageFolder/blob/master/ZLPhotoBrowser-objc/iPhoneXPortrait.png)
 
-![image](https://github.com/longitachi/ImageFolder/blob/master/ZLPhotoBrowser/IPhoneXLandscape.png)
+![image](https://github.com/longitachi/ImageFolder/blob/master/ZLPhotoBrowser-objc/IPhoneXLandscape.png)
 
 - 3DTouch预览效果图
 
-![image](https://github.com/longitachi/ImageFolder/blob/master/ZLPhotoBrowser/forceTouch.gif)
+![image](https://github.com/longitachi/ImageFolder/blob/master/ZLPhotoBrowser-objc/forceTouch.gif)
 
 - 导出视频添加粒子特效(雪花效果)
 
-![image](https://github.com/longitachi/ImageFolder/blob/master/ZLPhotoBrowser/snowEffect.gif)
+![image](https://github.com/longitachi/ImageFolder/blob/master/ZLPhotoBrowser-objc/snowEffect.gif)
 
 - 编辑视频预览图
 
-![image](https://github.com/longitachi/ImageFolder/blob/master/ZLPhotoBrowser/editVideo.gif)
+![image](https://github.com/longitachi/ImageFolder/blob/master/ZLPhotoBrowser-objc/editVideo.gif)
 
 - 编辑图片预览图
 
-![image](https://github.com/longitachi/ImageFolder/blob/master/ZLPhotoBrowser/edit.gif)
+![image](https://github.com/longitachi/ImageFolder/blob/master/ZLPhotoBrowser-objc/edit.gif)
 
 - 自定义相机效果图及介绍
 
-![image](https://github.com/longitachi/ImageFolder/blob/master/ZLPhotoBrowser/customCamera.gif)
-![image](https://github.com/longitachi/ImageFolder/blob/master/ZLPhotoBrowser/introduce.png)
+![image](https://github.com/longitachi/ImageFolder/blob/master/ZLPhotoBrowser-objc/customCamera.gif)
+![image](https://github.com/longitachi/ImageFolder/blob/master/ZLPhotoBrowser-objc/introduce.png)
 
 - 滑动多选预览图
 
-![image](https://github.com/longitachi/ImageFolder/blob/master/ZLPhotoBrowser/slideSelect.gif)
+![image](https://github.com/longitachi/ImageFolder/blob/master/ZLPhotoBrowser-objc/slideSelect.gif)
 
 - 拖拽选择预览图
 
-![image](https://github.com/longitachi/ImageFolder/blob/master/ZLPhotoBrowser/dragSelect.gif)
+![image](https://github.com/longitachi/ImageFolder/blob/master/ZLPhotoBrowser-objc/dragSelect.gif)
 
 - 混合选择预览图
 
-![image](https://github.com/longitachi/ImageFolder/blob/master/ZLPhotoBrowser/mixSelect.gif)
+![image](https://github.com/longitachi/ImageFolder/blob/master/ZLPhotoBrowser-objc/mixSelect.gif)
 
 - 横屏预览图
 
-![image](https://github.com/longitachi/ImageFolder/blob/master/ZLPhotoBrowser/landscape.gif)
+![image](https://github.com/longitachi/ImageFolder/blob/master/ZLPhotoBrowser-objc/landscape.gif)
 
 - 预览网络图片
 
-![image](https://github.com/longitachi/ImageFolder/blob/master/ZLPhotoBrowser/previewNetImage.gif)
+![image](https://github.com/longitachi/ImageFolder/blob/master/ZLPhotoBrowser-objc/previewNetImage.gif)
 
 - 遮罩层
 
-![image](https://github.com/longitachi/ImageFolder/blob/master/ZLPhotoBrowser/selectmask.gif)
+![image](https://github.com/longitachi/ImageFolder/blob/master/ZLPhotoBrowser-objc/selectmask.gif)
 
 - 预览快速多选效果图
 
-![image](https://github.com/longitachi/ImageFolder/blob/master/ZLPhotoBrowser/预览图快速选择.gif)
-![image](https://github.com/longitachi/ImageFolder/blob/master/ZLPhotoBrowser/预览大图快速选择.gif)
+![image](https://github.com/longitachi/ImageFolder/blob/master/ZLPhotoBrowser-objc/预览图快速选择.gif)
+![image](https://github.com/longitachi/ImageFolder/blob/master/ZLPhotoBrowser-objc/预览大图快速选择.gif)
 
 - 直接进入相册选择相片效果图
 
-![image](https://github.com/longitachi/ImageFolder/blob/master/ZLPhotoBrowser/直接进入相册选择相片.gif)
+![image](https://github.com/longitachi/ImageFolder/blob/master/ZLPhotoBrowser-objc/直接进入相册选择相片.gif)
 
 - 预览大图及缩放效果图
 
-![image](https://github.com/longitachi/ImageFolder/blob/master/ZLPhotoBrowser/查看大图支持缩放.gif)
-![image](https://github.com/longitachi/ImageFolder/blob/master/ZLPhotoBrowser/预览选择gif.gif)
-![image](https://github.com/longitachi/ImageFolder/blob/master/ZLPhotoBrowser/预览选择视频.gif)
+![image](https://github.com/longitachi/ImageFolder/blob/master/ZLPhotoBrowser-objc/查看大图支持缩放.gif)
+![image](https://github.com/longitachi/ImageFolder/blob/master/ZLPhotoBrowser-objc/预览选择gif.gif)
+![image](https://github.com/longitachi/ImageFolder/blob/master/ZLPhotoBrowser-objc/预览选择视频.gif)
 
 - 拍照
 
-![image](https://github.com/longitachi/ImageFolder/blob/master/ZLPhotoBrowser/相册内部拍照.gif)
+![image](https://github.com/longitachi/ImageFolder/blob/master/ZLPhotoBrowser-objc/相册内部拍照.gif)
 
 - 相册内混合选择效果图
 
-![image](https://github.com/longitachi/ImageFolder/blob/master/ZLPhotoBrowser/相册内混合选择.gif)
+![image](https://github.com/longitachi/ImageFolder/blob/master/ZLPhotoBrowser-objc/相册内混合选择.gif)
 
 - 预览已选择照片效果图
 
-![image](https://github.com/longitachi/ImageFolder/blob/master/ZLPhotoBrowser/预览已选择照片.gif)
-![image](https://github.com/longitachi/ImageFolder/blob/master/ZLPhotoBrowser/预览确定选择的照片.gif)
+![image](https://github.com/longitachi/ImageFolder/blob/master/ZLPhotoBrowser-objc/预览已选择照片.gif)
+![image](https://github.com/longitachi/ImageFolder/blob/master/ZLPhotoBrowser-objc/预览确定选择的照片.gif)
 
 - 原图功能效果图
 
-![image](https://github.com/longitachi/ImageFolder/blob/master/ZLPhotoBrowser/原图功能.gif)
+![image](https://github.com/longitachi/ImageFolder/blob/master/ZLPhotoBrowser-objc/原图功能.gif)
  
 
