@@ -1,8 +1,8 @@
 Pod::Spec.new do |s|
   s.name         = 'ZLPhotoBrowser-objc'
-  s.version      = '1.0.0'
+  s.version      = '1.0.1'
   s.summary      = 'ZLPhotoBrowser 的oc版本'
-  s.homepage     = 'https://github.com/longitachi/ZLPhotoBrowser'
+  s.homepage     = 'https://github.com/longitachi/ZLPhotoBrowser-objc'
   s.license      = 'MIT'
   s.platform     = :ios
   s.author       = {'longitachi' => 'longitachi@163.com'}

@@ -33,8 +33,6 @@
 		E4A1F2A1231FC49200315E4E /* SDWebImageMapKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E4A1F29F231FC49200315E4E /* SDWebImageMapKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E4C09432233CACEF0000858B /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C09431233CACEF0000858B /* ImageCell.swift */; };
 		E4C09435233CB74E0000858B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4C09434233CB74D0000858B /* Assets.xcassets */; };
-		E4D6AAF42488F78600CA66CC /* testVideo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = E4D6AAF32488F73300CA66CC /* testVideo.mp4 */; };
-		E4D6AAF52488FB8500CA66CC /* testVideo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = E4D6AAF32488F73300CA66CC /* testVideo.mp4 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,7 +113,6 @@
 		E4A1F2A2231FC52E00315E4E /* SwiftExample-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SwiftExample-Bridging-Header.h"; sourceTree = "<group>"; };
 		E4C09431233CACEF0000858B /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 		E4C09434233CB74D0000858B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		E4D6AAF32488F73300CA66CC /* testVideo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = testVideo.mp4; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,7 +162,6 @@
 		E4126B0E22FC077B00D3E9DF /* Example */ = {
 			isa = PBXGroup;
 			children = (
-				E4D6AAF32488F73300CA66CC /* testVideo.mp4 */,
 				E4126B0F22FC077B00D3E9DF /* AppDelegate.h */,
 				E4126B1022FC077B00D3E9DF /* AppDelegate.m */,
 				E4126B3322FC07EA00D3E9DF /* ViewController.h */,
@@ -320,7 +316,6 @@
 				E4126B4222FC07FC00D3E9DF /* Main.storyboard in Resources */,
 				E4126B4322FC07FC00D3E9DF /* LaunchScreen.storyboard in Resources */,
 				E4126B3622FC07EA00D3E9DF /* Assets.xcassets in Resources */,
-				E4D6AAF42488F78600CA66CC /* testVideo.mp4 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -331,7 +326,6 @@
 				E4A1F293231FC46D00315E4E /* LaunchScreen.storyboard in Resources */,
 				E4C09435233CB74E0000858B /* Assets.xcassets in Resources */,
 				E4A1F28E231FC46B00315E4E /* Main.storyboard in Resources */,
-				E4D6AAF52488FB8500CA66CC /* testVideo.mp4 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -532,7 +526,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ZL.Example;
+				PRODUCT_BUNDLE_IDENTIFIER = ZL.Example1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -550,7 +544,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ZL.Demo;
+				PRODUCT_BUNDLE_IDENTIFIER = ZL.Example1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

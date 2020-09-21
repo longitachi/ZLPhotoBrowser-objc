@@ -29,7 +29,7 @@ typedef NS_ENUM(NSUInteger, SlideSelectType) {
     SlideSelectTypeCancel,
 };
 
-@interface ZLThumbnailViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIViewControllerPreviewingDelegate, ZLInteractiveAnimateProtocol>
+@interface ZLThumbnailViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIViewControllerPreviewingDelegate, ZLInteractiveAnimateProtocol, PHPhotoLibraryChangeObserver>
 {
     BOOL _isLayoutOK;
     
@@ -74,60 +74,8 @@ typedef NS_ENUM(NSUInteger, SlideSelectType) {
 {
     if (!_arrDataSources) {
         _arrDataSources = [NSMutableArray array];
-        
-        ZLProgressHUD *hud = [[ZLProgressHUD alloc] init];
-        [hud show];
-        
-        ZLImageNavigationController *nav = (ZLImageNavigationController *)self.navigationController;
-        ZLPhotoConfiguration *configuration = nav.configuration;
-        
-        if (!_albumListModel) {
-            ZLImageNavigationController *nav = (ZLImageNavigationController *)self.navigationController;
-            @zl_weakify(self);
-            __weak typeof(nav) weakNav = nav;
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                [ZLPhotoManager getCameraRollAlbumList:configuration.allowSelectVideo allowSelectImage:configuration.allowSelectImage complete:^(ZLAlbumListModel *album) {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        @zl_strongify(self);
-                        __strong typeof(weakNav) strongNav  = weakNav;
-                        
-                        self.albumListModel = album;
-                        [ZLPhotoManager markSelectModelInArr:self.albumListModel.models selArr:strongNav.arrSelectedModels];
-                        [self.arrDataSources addObjectsFromArray:self.albumListModel.models];
-                        
-                        [hud hide];
-                        if (configuration.allowTakePhotoInLibrary && (configuration.allowSelectImage || configuration.allowRecordVideo)) {
-                            self.allowTakePhoto = YES;
-                        }
-                        self.title = album.title;
-                        [self.collectionView reloadData];
-                        [self scrollToBottom];
-                    });
-                }];
-            });
-        } else {
-            if (configuration.allowTakePhotoInLibrary && (configuration.allowSelectImage || configuration.allowRecordVideo) && self.albumListModel.isCameraRoll) {
-                self.allowTakePhoto = YES;
-            }
-            ZLImageNavigationController *nav = (ZLImageNavigationController *)self.navigationController;
-            
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                self.albumListModel.models = [ZLPhotoManager getPhotoInResult:self.albumListModel.result allowSelectVideo:configuration.allowSelectVideo allowSelectImage:configuration.allowSelectImage allowSelectGif:configuration.allowSelectGif allowSelectLivePhoto:configuration.allowSelectLivePhoto];
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [ZLPhotoManager markSelectModelInArr:self.albumListModel.models selArr:nav.arrSelectedModels];
-                    [self.arrDataSources addObjectsFromArray:self.albumListModel.models];
-                    
-                    [hud hide];
-                    if (configuration.allowTakePhotoInLibrary && (configuration.allowSelectImage || configuration.allowRecordVideo)) {
-                        self.allowTakePhoto = YES;
-                    }
-                    [self.collectionView reloadData];
-                    [self scrollToBottom];
-                });
-            });
-        }
     }
-    return _arrDataSources;
+    return  _arrDataSources;
 }
 
 - (NSMutableArray<NSIndexPath *> *)arrSlideIndexPath
@@ -167,6 +115,15 @@ typedef NS_ENUM(NSUInteger, SlideSelectType) {
     }
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceOrientationChanged:) name:UIApplicationWillChangeStatusBarOrientationNotification object:nil];
+    
+    // 状态为limit时候注册相册变化通知，由于photoLibraryDidChange方法会在每次相册变化时候回调多次，导致界面多次刷新，所以其他情况不监听相册变化
+    if (@available(iOS 14.0, *)) {
+        if ([PHPhotoLibrary authorizationStatusForAccessLevel:PHAccessLevelReadWrite] == PHAuthorizationStatusLimited) {
+            [[PHPhotoLibrary sharedPhotoLibrary] registerChangeObserver:self];
+        }
+    }
+    
+    [self loadPhotos];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -251,6 +208,16 @@ typedef NS_ENUM(NSUInteger, SlideSelectType) {
     _switchOrientation = YES;
 }
 
+#pragma mark - PHPhotoLibraryChangeObserver
+- (void)photoLibraryDidChange:(PHChange *)changeInstance
+{
+    [PHPhotoLibrary.sharedPhotoLibrary unregisterChangeObserver:self];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.albumListModel refreshResult];
+        [self loadPhotos];
+    });
+}
+
 - (BOOL)forceTouchAvailable
 {
     if (@available(iOS 9.0, *)) {
@@ -258,6 +225,33 @@ typedef NS_ENUM(NSUInteger, SlideSelectType) {
     } else {
         return NO;
     }
+}
+
+- (void)loadPhotos
+{
+    ZLProgressHUD *hud = [[ZLProgressHUD alloc] init];
+    [hud show];
+    
+    ZLImageNavigationController *nav = (ZLImageNavigationController *)self.navigationController;
+    ZLPhotoConfiguration *configuration = nav.configuration;
+    
+    if (configuration.allowTakePhotoInLibrary && (configuration.allowSelectImage || configuration.allowRecordVideo) && self.albumListModel.isCameraRoll) {
+        self.allowTakePhoto = YES;
+    }
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        self.albumListModel.models = [ZLPhotoManager getPhotoInResult:self.albumListModel.result allowSelectVideo:configuration.allowSelectVideo allowSelectImage:configuration.allowSelectImage allowSelectGif:configuration.allowSelectGif allowSelectLivePhoto:configuration.allowSelectLivePhoto];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [ZLPhotoManager markSelectModelInArr:self.albumListModel.models selArr:nav.arrSelectedModels];
+            [self.arrDataSources removeAllObjects];
+            [self.arrDataSources addObjectsFromArray:self.albumListModel.models];
+            
+            [hud hide];
+            
+            [self.collectionView reloadData];
+            [self scrollToBottom];
+        });
+    });
 }
 
 - (void)scrollToBottom

@@ -110,9 +110,9 @@ static BOOL _sortAscending;
     __block ZLAlbumListModel *m;
     [smartAlbums enumerateObjectsUsingBlock:^(PHAssetCollection *  _Nonnull collection, NSUInteger idx, BOOL * _Nonnull stop) {
         //获取相册内asset result
-        if (collection.assetCollectionSubtype == 209) {
+        if (collection.assetCollectionSubtype == PHAssetCollectionSubtypeSmartAlbumUserLibrary) {
             PHFetchResult<PHAsset *> *result = [PHAsset fetchAssetsInAssetCollection:collection options:option];
-            m = [self getAlbumModeWithTitle:[self getCollectionTitle:collection] result:result allowSelectVideo:allowSelectVideo allowSelectImage:allowSelectImage];
+            m = [self getAlbumModeWithTitle:[self getCollectionTitle:collection] result:result collection:collection option:option allowSelectVideo:allowSelectVideo allowSelectImage:allowSelectImage];
             m.isCameraRoll = YES;
         }
     }];
@@ -193,11 +193,11 @@ static BOOL _sortAscending;
             
             if (collection.assetCollectionSubtype == PHAssetCollectionSubtypeSmartAlbumUserLibrary) {
                 //所有照片
-                ZLAlbumListModel *m = [self getAlbumModeWithTitle:title result:result allowSelectVideo:allowSelectVideo allowSelectImage:allowSelectImage];
+                ZLAlbumListModel *m = [self getAlbumModeWithTitle:title result:result collection:collection option:option allowSelectVideo:allowSelectVideo allowSelectImage:allowSelectImage];
                 m.isCameraRoll = YES;
                 [arrAlbum insertObject:m atIndex:0];
             } else {
-                [arrAlbum addObject:[self getAlbumModeWithTitle:title result:result allowSelectVideo:allowSelectVideo allowSelectImage:allowSelectImage]];
+                [arrAlbum addObject:[self getAlbumModeWithTitle:title result:result collection:collection option:option allowSelectVideo:allowSelectVideo allowSelectImage:allowSelectImage]];
             }
         }];
     }
@@ -274,12 +274,14 @@ static BOOL _sortAscending;
 }
 
 //获取相册列表model
-+ (ZLAlbumListModel *)getAlbumModeWithTitle:(NSString *)title result:(PHFetchResult<PHAsset *> *)result allowSelectVideo:(BOOL)allowSelectVideo allowSelectImage:(BOOL)allowSelectImage
++ (ZLAlbumListModel *)getAlbumModeWithTitle:(NSString *)title result:(PHFetchResult<PHAsset *> *)result collection:(PHAssetCollection *)collection option:(PHFetchOptions *)option allowSelectVideo:(BOOL)allowSelectVideo allowSelectImage:(BOOL)allowSelectImage
 {
     ZLAlbumListModel *model = [[ZLAlbumListModel alloc] init];
     model.title = title;
     model.count = result.count;
     model.result = result;
+    model.collection = collection;
+    model.option = option;
     if (self.sortAscending) {
         model.headImageAsset = result.lastObject;
     } else {

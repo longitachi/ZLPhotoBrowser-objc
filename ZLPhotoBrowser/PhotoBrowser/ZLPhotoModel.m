@@ -25,5 +25,10 @@
 
 @implementation ZLAlbumListModel
 
+- (void)refreshResult
+{
+    self.result = [PHAsset fetchAssetsInAssetCollection:self.collection options:self.option];
+    self.count = self.result.count;
+}
 
 @end

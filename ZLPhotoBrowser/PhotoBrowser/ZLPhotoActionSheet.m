@@ -150,14 +150,9 @@ double const ScalePhotoWidth = 1000;
 //相册变化回调
 - (void)photoLibraryDidChange:(PHChange *)changeInstance
 {
+    [[PHPhotoLibrary sharedPhotoLibrary] unregisterChangeObserver:self];
     dispatch_sync(dispatch_get_main_queue(), ^{
-        if (self.preview) {
-            [self loadPhotoFromAlbum];
-            [self show];
-        } else {
-            [self btnPhotoLibrary_Click:nil];
-        }
-        [[PHPhotoLibrary sharedPhotoLibrary] unregisterChangeObserver:self];
+        [self loadPhotoFromAlbum];
     });
 }
 
@@ -185,11 +180,6 @@ double const ScalePhotoWidth = 1000;
 
 - (void)showPreview:(BOOL)preview animate:(BOOL)animate
 {
-    if (![ZLPhotoManager havePhotoLibraryAuthority]) {
-        //注册实施监听相册变化
-        [[PHPhotoLibrary sharedPhotoLibrary] registerChangeObserver:self];
-    }
-    
     NSAssert(self.sender != nil, @"sender 对象不能为空");
     
     self.animate = animate;
@@ -213,21 +203,35 @@ double const ScalePhotoWidth = 1000;
         return;
     } else if (status == PHAuthorizationStatusNotDetermined) {
         [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
-            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (status == PHAuthorizationStatusDenied) {
+                    [self showNoAuthorityVC];
+                } else if (status == PHAuthorizationStatusAuthorized) {
+                    if (self.preview) {
+                        [self loadPhotoFromAlbum];
+                        [self show];
+                    } else {
+                        [self btnPhotoLibrary_Click:nil];
+                    }
+                }
+            });
         }];
         
         [self.sender.view addSubview:self];
-    }
-    
-    if (preview) {
-        if (status == PHAuthorizationStatusAuthorized) {
+    } else {
+        if (preview) {
             [self loadPhotoFromAlbum];
             [self show];
-        }
-    } else {
-        if (status == PHAuthorizationStatusAuthorized) {
+        } else {
             [self.sender.view addSubview:self];
             [self btnPhotoLibrary_Click:nil];
+        }
+    }
+    
+    // 状态为limit时候注册相册变化通知，由于photoLibraryDidChange方法会在每次相册变化时候回调多次，导致界面多次刷新，所以其他情况不监听相册变化
+    if (@available(iOS 14.0, *)) {
+        if (preview && [PHPhotoLibrary authorizationStatusForAccessLevel:PHAccessLevelReadWrite] == PHAuthorizationStatusLimited) {
+            [[PHPhotoLibrary sharedPhotoLibrary] registerChangeObserver:self];
         }
     }
 }
@@ -569,6 +573,7 @@ double const ScalePhotoWidth = 1000;
 
 - (IBAction)btnPhotoLibrary_Click:(id)sender
 {
+    [PHPhotoLibrary.sharedPhotoLibrary unregisterChangeObserver:self];
     if (![ZLPhotoManager havePhotoLibraryAuthority]) {
         [self showNoAuthorityVC];
     } else {
@@ -978,11 +983,14 @@ double const ScalePhotoWidth = 1000;
 //预览界面
 - (void)pushThumbnailViewController
 {
-    ZLAlbumListController *albumListVC = [[ZLAlbumListController alloc] initWithStyle:UITableViewStylePlain];
-    ZLImageNavigationController *nav = [self getImageNavWithRootVC:albumListVC];
-    ZLThumbnailViewController *tvc = [[ZLThumbnailViewController alloc] init];
-    [nav pushViewController:tvc animated:YES];
-    [self.sender showDetailViewController:nav sender:nil];
+    [ZLPhotoManager getCameraRollAlbumList:self.configuration.allowSelectVideo allowSelectImage:self.configuration.allowSelectImage complete:^(ZLAlbumListModel * _Nonnull album) {
+        ZLAlbumListController *albumListVC = [[ZLAlbumListController alloc] initWithStyle:UITableViewStylePlain];
+        ZLImageNavigationController *nav = [self getImageNavWithRootVC:albumListVC];
+        ZLThumbnailViewController *tvc = [[ZLThumbnailViewController alloc] init];
+        tvc.albumListModel = album;
+        [nav pushViewController:tvc animated:YES];
+        [self.sender showDetailViewController:nav sender:nil];
+    }];
 }
 
 //查看大图界面
