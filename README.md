@@ -1,9 +1,9 @@
 ![image](https://github.com/longitachi/ImageFolder/blob/master/ZLPhotoBrowser-objc/ZLPhotoBrowser.png)
 
-[![Version](https://img.shields.io/cocoapods/v/ZLPhotoBrowser.svg?style=flat)](http://cocoadocs.org/docsets/ZLPhotoBrowser)
+[![Version](https://img.shields.io/cocoapods/v/ZLPhotoBrowser-objc.svg?style=flat)](http://cocoadocs.org/docsets/ZLPhotoBrowser-objc)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)&nbsp;
-[![License](https://img.shields.io/cocoapods/l/ZLPhotoBrowser.svg?style=flat)](http://cocoadocs.org/docsets/ZLPhotoBrowser)
-[![Platform](https://img.shields.io/cocoapods/p/ZLPhotoBrowser.svg?style=flat)](http://cocoadocs.org/docsets/ZLPhotoBrowser)
+[![License](https://img.shields.io/cocoapods/l/ZLPhotoBrowser-objc.svg?style=flat)](http://cocoadocs.org/docsets/ZLPhotoBrowser-objc)
+[![Platform](https://img.shields.io/cocoapods/p/ZLPhotoBrowser-objc.svg?style=flat)](http://cocoadocs.org/docsets/ZLPhotoBrowser-objc)
 ![Language](https://img.shields.io/badge/Language-%20Objective%20C%20-blue.svg)
 <a href="http://www.jianshu.com/u/a02909a8a93b"><img src="https://img.shields.io/badge/JianShu-@longitachi-red.svg?style=flat"></a>
 
