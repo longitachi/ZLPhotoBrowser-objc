@@ -16,7 +16,22 @@
 {
     static NSBundle *photoBrowserBundle = nil;
     if (photoBrowserBundle == nil) {
-        photoBrowserBundle = [NSBundle bundleWithPath:[[NSBundle bundleForClass:[ZLPhotoActionSheet class]] pathForResource:@"ZLPhotoBrowser" ofType:@"bundle"]];
+//        photoBrowserBundle = [NSBundle bundleWithPath:[[NSBundle bundleForClass:[ZLPhotoActionSheet class]] pathForResource:@"ZLPhotoBrowser" ofType:@"bundle"]];
+        
+        NSArray *candidates = @[
+            NSBundle.mainBundle.resourceURL,
+            [NSBundle bundleForClass:ZLPhotoActionSheet.class].resourceURL,
+            NSBundle.mainBundle.bundleURL
+        ];
+        
+        for (NSURL *candidate in candidates) {
+            NSURL *bundlePath = [candidate URLByAppendingPathComponent:@"ZLPhotoBrowser.bundle"];
+            NSBundle *b = [NSBundle bundleWithURL:bundlePath];
+            if (b != nil) {
+                photoBrowserBundle = b;
+                break;
+            }
+        }
     }
     return photoBrowserBundle;
 }

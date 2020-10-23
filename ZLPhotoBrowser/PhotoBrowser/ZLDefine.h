@@ -110,10 +110,6 @@
 
 #define kZLPhotoBrowserBundle [NSBundle bundleForClass:[self class]]
 
-// 图片路径
-#define kZLPhotoBrowserSrcName(file) [@"ZLPhotoBrowser.bundle" stringByAppendingPathComponent:file]
-#define kZLPhotoBrowserFrameworkSrcName(file) [@"Frameworks/ZLPhotoBrowser.framework/ZLPhotoBrowser.bundle" stringByAppendingPathComponent:file]
-
 #define kViewWidth      [[UIScreen mainScreen] bounds].size.width
 #define kViewHeight     [[UIScreen mainScreen] bounds].size.height
 
@@ -243,7 +239,7 @@ static inline UIImage * GetImageWithName(NSString *name) {
     if ([names containsObject:name]) {
         return [UIImage imageNamed:name];
     }
-    return [UIImage imageNamed:kZLPhotoBrowserSrcName(name)]?:[UIImage imageNamed:kZLPhotoBrowserFrameworkSrcName(name)];
+    return [UIImage imageNamed:name inBundle:NSBundle.zlPhotoBrowserBundle withConfiguration:nil];
 }
 
 static inline CGFloat GetMatchValue(NSString *text, CGFloat fontSize, BOOL isHeightFixed, CGFloat fixedValue) {
