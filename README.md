@@ -5,7 +5,6 @@
 [![License](https://img.shields.io/cocoapods/l/ZLPhotoBrowser-objc.svg?style=flat)](http://cocoadocs.org/docsets/ZLPhotoBrowser-objc)
 [![Platform](https://img.shields.io/cocoapods/p/ZLPhotoBrowser-objc.svg?style=flat)](http://cocoadocs.org/docsets/ZLPhotoBrowser-objc)
 ![Language](https://img.shields.io/badge/Language-%20Objective%20C%20-blue.svg)
-<a href="http://www.jianshu.com/u/a02909a8a93b"><img src="https://img.shields.io/badge/JianShu-@longitachi-red.svg?style=flat"></a>
 
 ----------------------------------------
 
@@ -20,7 +19,6 @@
 * [更新日志](#更新日志)
 * [使用方法(支持cocoapods/carthage安装)](#使用方法)
 * [English Document](#English)
-* [问答](#问答)
 * [效果图](#效果图)
 
 ### <a id="功能介绍"></a>功能介绍
@@ -137,7 +135,6 @@ camera.doneBlock = ^(UIImage *image, NSURL *videoUrl) {
 
 ------------------
 ### <a id="English"></a>English
-> 可能有翻译不正确的地方，还请英语大佬校准校准
 
 #### Functions
 - [x] Multiple orientations support: Portrait, Landscape
@@ -192,13 +189,6 @@ Privacy - Photo Library Usage Description
 Privacy - Camera Usage Description
 Privacy - Microphone Usage Description
 ```
-
-### <a id="问答"></a>问答
-* 关于 `@available(9.0, *)` 报错 ([#90](https://github.com/longitachi/ZLPhotoBrowser/issues/90))
-> 该错误会出现在XCode 9.0以下版本，把该代码替换为 `[UIDevice currentDevice].systemVersion.floatValue >= 9.0` 即可
-
-* 从 `pod 2.4.3` 以下版本更新到 `pod 2.4.3` 以上版本报如下错误 `Terminating app due to uncaught exception 'NSUnknownKeyException', reason: '[<ZLThumbnailViewController 0x15bed0d10> setValue:forUndefinedKey:]: this class is not key value coding-compliant for the key verLeftSpace.'`
-> 由于 `pod 2.4.3` 版本删除对应xib，所以请执行 `command+shift+k` clean项目，重启Xcode即可
 
 ### <a id="效果图"></a> 效果图
 - 多语言国际化效果图
