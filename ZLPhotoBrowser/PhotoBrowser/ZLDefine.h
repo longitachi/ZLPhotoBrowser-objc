@@ -239,7 +239,7 @@ static inline UIImage * GetImageWithName(NSString *name) {
     if ([names containsObject:name]) {
         return [UIImage imageNamed:name];
     }
-    return [UIImage imageNamed:name inBundle:NSBundle.zlPhotoBrowserBundle withConfiguration:nil];
+    return [UIImage imageNamed:name inBundle:NSBundle.zlPhotoBrowserBundle compatibleWithTraitCollection:nil];
 }
 
 static inline CGFloat GetMatchValue(NSString *text, CGFloat fontSize, BOOL isHeightFixed, CGFloat fixedValue) {
