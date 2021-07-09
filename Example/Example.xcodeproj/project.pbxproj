@@ -19,7 +19,6 @@
 		E4126B4A22FC085100D3E9DF /* ZLPhotoBrowser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4126B4922FC084500D3E9DF /* ZLPhotoBrowser.framework */; };
 		E4126B4B22FC085100D3E9DF /* ZLPhotoBrowser.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E4126B4922FC084500D3E9DF /* ZLPhotoBrowser.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E4126B5122FC08CF00D3E9DF /* SDWebImage.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E4126B4F22FC08CF00D3E9DF /* SDWebImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E4126B5222FC08CF00D3E9DF /* SDWebImageMapKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E4126B5022FC08CF00D3E9DF /* SDWebImageMapKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E4A1F287231FC46B00315E4E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A1F286231FC46B00315E4E /* AppDelegate.swift */; };
 		E4A1F289231FC46B00315E4E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A1F288231FC46B00315E4E /* SceneDelegate.swift */; };
 		E4A1F28B231FC46B00315E4E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A1F28A231FC46B00315E4E /* ViewController.swift */; };
@@ -60,7 +59,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				E4126B5122FC08CF00D3E9DF /* SDWebImage.framework in Embed Frameworks */,
-				E4126B5222FC08CF00D3E9DF /* SDWebImageMapKit.framework in Embed Frameworks */,
 				E4126B4B22FC085100D3E9DF /* ZLPhotoBrowser.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -100,7 +98,6 @@
 		E4126B4122FC07FC00D3E9DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E4126B4422FC084400D3E9DF /* ZLPhotoBrowser.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ZLPhotoBrowser.xcodeproj; path = ../ZLPhotoBrowser.xcodeproj; sourceTree = "<group>"; };
 		E4126B4F22FC08CF00D3E9DF /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImage.framework; path = ../Carthage/Build/iOS/SDWebImage.framework; sourceTree = "<group>"; };
-		E4126B5022FC08CF00D3E9DF /* SDWebImageMapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImageMapKit.framework; path = ../Carthage/Build/iOS/SDWebImageMapKit.framework; sourceTree = "<group>"; };
 		E4A1F284231FC46B00315E4E /* SwiftExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4A1F286231FC46B00315E4E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E4A1F288231FC46B00315E4E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -141,7 +138,6 @@
 			isa = PBXGroup;
 			children = (
 				E4126B4F22FC08CF00D3E9DF /* SDWebImage.framework */,
-				E4126B5022FC08CF00D3E9DF /* SDWebImageMapKit.framework */,
 				E4126B0E22FC077B00D3E9DF /* Example */,
 				E4A1F285231FC46B00315E4E /* SwiftExample */,
 				E4126B0D22FC077B00D3E9DF /* Products */,
@@ -526,7 +522,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ZL.Example2;
+				PRODUCT_BUNDLE_IDENTIFIER = ZL.Example5;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -545,7 +541,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ZL.Example2;
+				PRODUCT_BUNDLE_IDENTIFIER = ZL.Example5;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";

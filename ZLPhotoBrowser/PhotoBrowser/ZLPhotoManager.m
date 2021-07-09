@@ -886,13 +886,38 @@ static BOOL _sortAscending;
     options.version = PHVideoRequestOptionsVersionOriginal;
     options.deliveryMode = PHVideoRequestOptionsDeliveryModeAutomatic;
     options.networkAccessAllowed = YES;
-    [[PHImageManager defaultManager] requestAVAssetForVideo:asset options:options resultHandler:^(AVAsset * _Nullable asset, AVAudioMix * _Nullable audioMix, NSDictionary * _Nullable info) {
-        [self export:asset range:CMTimeRangeMake(kCMTimeZero, kCMTimePositiveInfinity) type:type presetName:presetName renderSize:renderSize watermarkImage:watermarkImage watermarkLocation:location imageSize:imageSize effectImage:effectImage birthRate:birthRate velocity:velocity complete:^(NSString *exportFilePath, NSError *error) {
+    
+    BOOL isInCloud = YES;
+    if (@available(iOS 9, *)) {
+        PHAssetResource *resource = [PHAssetResource assetResourcesForAsset:asset].firstObject;
+        isInCloud = [[resource valueForKey:@"locallyAvailable"] boolValue] == NO;
+    }
+    
+    if (isInCloud) {
+        [[PHImageManager defaultManager] requestExportSessionForVideo:asset options:options exportPreset:AVAssetExportPresetHighestQuality resultHandler:^(AVAssetExportSession * _Nullable exportSession, NSDictionary * _Nullable info) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                if (complete) complete(exportFilePath, error);
+                if (exportSession.asset == nil) {
+                    if (complete) {
+                        complete(nil, exportSession.error);
+                    }
+                    return;
+                }
+                [self export:exportSession.asset range:CMTimeRangeMake(kCMTimeZero, kCMTimePositiveInfinity) type:type presetName:presetName renderSize:renderSize watermarkImage:watermarkImage watermarkLocation:location imageSize:imageSize effectImage:effectImage birthRate:birthRate velocity:velocity complete:^(NSString *exportFilePath, NSError *error) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        if (complete) complete(exportFilePath, error);
+                    });
+                }];
             });
         }];
-    }];
+    } else {
+        [[PHImageManager defaultManager] requestAVAssetForVideo:asset options:options resultHandler:^(AVAsset * _Nullable asset, AVAudioMix * _Nullable audioMix, NSDictionary * _Nullable info) {
+            [self export:asset range:CMTimeRangeMake(kCMTimeZero, kCMTimePositiveInfinity) type:type presetName:presetName renderSize:renderSize watermarkImage:watermarkImage watermarkLocation:location imageSize:imageSize effectImage:effectImage birthRate:birthRate velocity:velocity complete:^(NSString *exportFilePath, NSError *error) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    if (complete) complete(exportFilePath, error);
+                });
+            }];
+        }];
+    }
 }
 
 + (void)export:(AVAsset *)asset range:(CMTimeRange)range type:(ZLExportVideoType)type presetName:(NSString *)presetName renderSize:(CGSize)renderSize watermarkImage:(UIImage *)watermarkImage watermarkLocation:(ZLWatermarkLocation)location imageSize:(CGSize)imageSize effectImage:(UIImage *)effectImage birthRate:(NSInteger)birthRate velocity:(CGFloat)velocity complete:(void (^)(NSString *exportFilePath, NSError *error))complete
