@@ -51,6 +51,7 @@
 ### 更新日志
 > [更多更新日志](https://github.com/longitachi/ZLPhotoBrowser-objc/blob/master/UPDATELOG.md)
 ```
+● 1.0.4: 修复无法导出iCloud视频的bug;
 ● 1.0.1: 适配iOS14 limited权限;
 ```
 
